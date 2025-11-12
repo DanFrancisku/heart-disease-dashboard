@@ -58,22 +58,26 @@ with tab2:
         import plotly.express as px
         df = load_data(DATA_PATH)
 
-        color_col = "num" if "num" in df.columns else None
+        # Use 'target' as the label column for coloring charts
+        color_col = "target" if "target" in df.columns else None
 
         if "age" in df.columns:
             st.plotly_chart(
-                px.histogram(df, x="age", color=color_col, title="Age distribution"),
+                px.histogram(df, x="age", color=color_col, title="Age Distribution by Target"),
                 use_container_width=True
             )
 
         num_cols = df.select_dtypes("number").columns.tolist()
         if len(num_cols) >= 2:
             st.plotly_chart(
-                px.scatter(df, x=num_cols[0], y=num_cols[1], color=color_col,
-                           title=f"{num_cols[0]} vs {num_cols[1]}"),
+                px.scatter(
+                    df, x=num_cols[0], y=num_cols[1], color=color_col,
+                    title=f"{num_cols[0]} vs {num_cols[1]}"
+                ),
                 use_container_width=True
             )
-        st.caption("Tip: If your target column is named `num`, charts will color by class.")
+
+        st.caption("Charts are automatically colored by the 'target' column if it exists in your dataset.")
     else:
         st.info("Upload `heart_clean.csv` to enable charts.")
 
