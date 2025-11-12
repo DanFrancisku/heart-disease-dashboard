@@ -62,4 +62,10 @@ Model saved as `rf_model.pkl`.
 
 ## 📁 Repository Structure
 heart-disease-dashboard/ │ ├── app.py ...
-
+│
+├── app.py # Streamlit app script
+├── heart_clean.csv # Cleaned dataset
+├── rf_model.pkl # Trained Random Forest model
+├── requirements.txt # Python dependencies
+├── runtime.txt # Streamlit runtime version
+└── README.md # Project documentation
